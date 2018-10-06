@@ -4,9 +4,11 @@ import wave
 
 import pyaudio
 
+print(b"CLOSE")
+
 FORMAT = pyaudio.paInt16
-CHANNELS = 2
-RATE = 44100
+CHANNELS = 1
+RATE = 45056
 
 player = pyaudio.PyAudio()
 
@@ -38,9 +40,14 @@ continuer = True
 while continuer:
 	try:
 		#player.play(sock.recv(2048))
-		wf.writeframes(sock.recv(2048))		
+		data = sock.recv(1024)
+		if(data == b'CLOSE'):
+			continuer = False
+		else:
+			wf.writeframes(data)	
+		if(data != b''):print(data)	
 	except Exception as e:
-		#print(e)
+		print(e)
 		continuer = False
 
 sock.close()

@@ -24,8 +24,10 @@ def main():
 		logger.debug("Creation of the server successed")
 		serv.startRecording()
 		serv.whileAccept()
-	except valueError:
+	except ValueError:
 		logger.error("Incorrect port value !")
+	except OSError:
+		logger.debug("Port already in use")
 
 
 if __name__ == "__main__":

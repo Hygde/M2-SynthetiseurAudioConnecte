@@ -31,13 +31,18 @@ class ManageClient(Thread):
 		
 	def stop(self):
 		self.logger.debug("Stoping the client %s thread",self.addr)
-		self.continuer = False
+		try:
+			self.logger.debug("CLOSE")
+			self.sock.sendall(b"CLOSE")
+		finally:
+			self.continuer = False
 		
 	def run(self):
 		self.logger.debug("Starting client %s thread", self.addr)
 		self.continuer = True
 		while(self.continuer):
 			try:
+			
 				if(self.read == False):
 					self.sock.sendall(self.data)
 					self.read = True
@@ -51,7 +56,7 @@ class ManageClient(Thread):
 	def cleanup(self):
 		self.logger.debug("Client %s waiting for lock", self.addr)
 		self.lock.acquire(True)
-		self.sock.shutdown(socket.SHUT_RDWR)
+		#self.sock.shutdown(socket.SHUT_RDWR)
 		self.sock.close()
 		self.lclients.remove(self)
 		print(len(self.lclients))

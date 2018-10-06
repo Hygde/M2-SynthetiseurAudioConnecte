@@ -33,6 +33,7 @@ class Audio:
 		
 	def setFormat(self, val):
 		self.logger.debug("Microphone format = ", val)
+		self.Format = val
 		
 	#/* Getters */
 
