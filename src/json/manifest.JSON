@@ -1,0 +1,21 @@
+{
+	"label": "monmodule",
+	"package": "com.developper.whateveryouwant",
+	"version": "1.0.0",
+	"versionLabel": "???",
+	"deps": [
+		{
+			//todo
+		}
+	],
+	"services": [
+		{
+			"name": "monService",
+			"format": "JSON/binary",
+			"type": "TCP/UDP",
+			"port": 2000
+		}
+	],
+	"os": "win/linux/mac/ios/android",
+	"type": "input/mobile"
+}

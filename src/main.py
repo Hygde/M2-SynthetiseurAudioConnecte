@@ -22,6 +22,7 @@ def main():
 	try:
 		serv = Server(int(sys.argv[1]))
 		logger.debug("Creation of the server successed")
+		serv.sendJson()
 		serv.startRecording()
 		serv.whileAccept()
 	except ValueError:

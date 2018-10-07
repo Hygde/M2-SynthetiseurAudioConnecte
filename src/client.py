@@ -1,54 +1,32 @@
 import socket
 import time
-import wave
 
-import pyaudio
+class Client():
 
-print(b"CLOSE")
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.connected = True
 
-FORMAT = pyaudio.paInt16
-CHANNELS = 1
-RATE = 45056
+    def connect(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_address = (self.host, self.port)  
+        sock.connect(server_address)  
+        print("connecting to %s (%s) with %s" % (self.host, self.port, server_address))
 
-player = pyaudio.PyAudio()
+    def sendJsonData(data):
+        print("grec")
+        while connected:
+            try:
+                print("Connection on {}".format(port))
+                sock.send(data)
+                connected = False
+            except Exception as e:
+                print(e)
+                connected = False
 
+        print("Close")
+        sock.close()
 
-WAVE_OUTPUT_FILENAME = "output_2.wav"
-wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-wf.setnchannels(CHANNELS)
-wf.setsampwidth(player.get_sample_size(FORMAT))
-wf.setframerate(RATE)
-
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# retrieve local hostname
-local_hostname = socket.gethostname()
-
-# get fully qualified hostname
-local_fqdn = socket.getfqdn()
-
-# get the according IP address
-ip_address = "127.0.0.1"#socket.gethostbyname("samuel-p34v5")
-
-# bind the socket to the port 23456, and connect
-server_address = (ip_address, 2000)  
-sock.connect(server_address)  
-print ("connecting to %s (%s) with %s" % (local_hostname, local_fqdn, ip_address))
-
-continuer = True
-
-while continuer:
-	try:
-		#player.play(sock.recv(2048))
-		data = sock.recv(1024)
-		if(data == b'CLOSE'):
-			continuer = False
-		else:
-			wf.writeframes(data)	
-		if(data != b''):print(data)	
-	except Exception as e:
-		print(e)
-		continuer = False
-
-sock.close()
-wf.close()
+    #def sendOtherData(data):
+        #TODO
