@@ -46,11 +46,7 @@ class ManageClient(Thread):
 				if(self.read == False):
 					self.sock.sendall(self.data)
 					self.read = True
-<<<<<<< Updated upstream
-				time.sleep(0.008)
-=======
 				else:time.sleep(0.01)
->>>>>>> Stashed changes
 			except Exception as e:
 				self.logger.debug(e)
 				self.logger.debug("Connection closed !")
