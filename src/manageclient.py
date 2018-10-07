@@ -23,11 +23,11 @@ class ManageClient(Thread):
 		
 	def setData(self, data):
 		self.logger.debug("set data")
-		self.lock_read.acquire(True)
-		self.data = data
-		self.read = False
-		self.lock_read.release()
-		self.logger.debug("setting data completed")
+		if(self.lock_read.acquire(False)):
+			self.data = data
+			self.read = False
+			self.lock_read.release()
+			self.logger.debug("setting data completed")
 		
 	def stop(self):
 		self.logger.debug("Stoping the client %s thread",self.addr)
@@ -46,7 +46,11 @@ class ManageClient(Thread):
 				if(self.read == False):
 					self.sock.sendall(self.data)
 					self.read = True
-				time.sleep(0.01)
+<<<<<<< Updated upstream
+				time.sleep(0.008)
+=======
+				else:time.sleep(0.01)
+>>>>>>> Stashed changes
 			except Exception as e:
 				self.logger.debug(e)
 				self.logger.debug("Connection closed !")
@@ -56,7 +60,6 @@ class ManageClient(Thread):
 	def cleanup(self):
 		self.logger.debug("Client %s waiting for lock", self.addr)
 		self.lock.acquire(True)
-		#self.sock.shutdown(socket.SHUT_RDWR)
 		self.sock.close()
 		self.lclients.remove(self)
 		print(len(self.lclients))

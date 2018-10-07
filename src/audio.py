@@ -7,7 +7,7 @@ class Audio:
 		self.logger = logging.getLogger()
 		self.logger.debug("Initializing Audio")
 		self.audio = pyaudio.PyAudio()
-		self.bsize = 1024
+		self.bsize = 2048
 		self.Format = pyaudio.paInt16
 		self.nb_channel = 1
 		self.RATE = 45056
