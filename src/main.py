@@ -25,12 +25,10 @@ def main():
 		serv.sendJson()
 		serv.startRecording()
 		serv.whileAccept()
-	except ValueError as e:
+	except ValueError:
 		logger.error("Incorrect port value !")
-		logger.debug(e)
-	except OSError as e:
+	except OSError:
 		logger.debug("Port already in use")
-		logger.debug(e)
 
 
 if __name__ == "__main__":
