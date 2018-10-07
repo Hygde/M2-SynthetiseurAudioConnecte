@@ -7,26 +7,40 @@ class Client():
         self.host = host
         self.port = port
         self.connected = True
+        self.sock = None
 
     def connect(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (self.host, self.port)  
-        sock.connect(server_address)  
+        self.sock.connect(server_address)  
         print("connecting to %s (%s) with %s" % (self.host, self.port, server_address))
 
-    def sendJsonData(data):
+    def sendJsonData(self, data):
         print("grec")
-        while connected:
+        while self.connected:
             try:
                 print("Connection on {}".format(port))
-                sock.send(data)
-                connected = False
+                self.sock.send(data)
+                self.connected = False
             except Exception as e:
                 print(e)
-                connected = False
+                self.connected = False
 
         print("Close")
-        sock.close()
+        self.sock.close()
 
-    #def sendOtherData(data):
-        #TODO
+    #def sendData(data):
+    #    while continuer:
+    #        try:
+	#		    #player.play(sock.recv(2048))
+	#	        data = sock.recv(4096)
+	#	        if(data == b'CLOSE'):
+	#		        continuer = False
+	#	        else:
+	#		        player.play(data)		
+	#        except Exception as e:
+	#	        print(e)
+	#	        continuer = False
+
+    #    sock.close()
+    #    player.closeAudioPlayerStream()

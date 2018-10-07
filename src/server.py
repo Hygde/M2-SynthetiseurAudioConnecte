@@ -25,8 +25,8 @@ class Server:
 
     def sendJson(self):
         self.logger.debug("The server is sending a json file to the clients")
-        print("gggg", socket.gethostname())
-        self.json_data = SendJson(socket.gethostname(), 2000, "json/manifest.JSON")
+        #self.json_data = SendJson("37.59.57.203", 55555, "json/manifest.JSON")
+        self.json_data = SendJson("37.59.57.203", 55555, "json/manifest.JSON")
         self.json_data.sendingJson()
 		
     def startRecording(self):
