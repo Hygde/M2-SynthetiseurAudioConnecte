@@ -46,7 +46,7 @@ class ManageClient(Thread):
 				if(self.read == False):
 					self.sock.sendall(self.data)
 					self.read = True
-				time.sleep(0.01)
+				time.sleep(0.008)
 			except Exception as e:
 				self.logger.debug(e)
 				self.logger.debug("Connection closed !")
@@ -56,7 +56,6 @@ class ManageClient(Thread):
 	def cleanup(self):
 		self.logger.debug("Client %s waiting for lock", self.addr)
 		self.lock.acquire(True)
-		#self.sock.shutdown(socket.SHUT_RDWR)
 		self.sock.close()
 		self.lclients.remove(self)
 		print(len(self.lclients))

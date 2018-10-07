@@ -31,7 +31,7 @@ class ManageMicrophone(Thread):
 				for i in range(len(self.lclients)):
 					self.lclients[i].setData(buff)						
 				self.lock.release()
-			time.sleep(0.02)
+			time.sleep(0.008)
 		self.cleanup()
 		
 	def cleanup(self):
