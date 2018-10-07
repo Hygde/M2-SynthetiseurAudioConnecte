@@ -27,11 +27,11 @@ class ManageMicrophone(Thread):
 		while(self.continuer):
 			if(len(self.lclients) != 0):
 				buff =  self.mic.getDataFromBuffer()
-				self.lock.acquire(True)
-				for i in range(len(self.lclients)):
-					self.lclients[i].setData(buff)						
-				self.lock.release()
-			time.sleep(0.008)
+				if(self.lock.acquire(False)):
+					for i in range(len(self.lclients)):
+						self.lclients[i].setData(buff)						
+					self.lock.release()
+			else:time.sleep(0.01)
 		self.cleanup()
 		
 	def cleanup(self):
