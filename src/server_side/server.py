@@ -3,15 +3,14 @@ import logging
 import threading
 
 from audio import *
-from sendjson import *
+#from sendjson import *
 from manageclient import *
 from managemicrophone import *
 
 class Server:
 	
-    logger = logging.getLogger()
-	
     def __init__(self, port):
+        self.logger = logging.getLogger()
         self.logger.debug("Initializing server")
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.bind(("", port))

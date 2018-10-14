@@ -1,6 +1,9 @@
+import logging
+
 import sys
 import logging
-from server import *
+
+from client import *
 
 def initLogger():
 	logger = logging.getLogger()
@@ -16,20 +19,18 @@ def initLogger():
 def main():
 	logger = initLogger()
 	logger.info("starting program")
-	
-	assert (len(sys.argv) == 2),"A port is expected"
-	print(int("5"))
+	client_list = []
 	try:
-		serv = Server(int(sys.argv[1]))
-		logger.debug("Creation of the server successed")
-		serv.sendJson()
-		serv.startRecording()
-		serv.whileAccept()
-	except ValueError:
-		logger.error("Incorrect port value !")
-	except OSError:
-		logger.debug("Port already in use")
-
+		logger.debug("Creation of the client successed")
+		client_list.append(Client(True, "127.0.0.1",2000))
+		client_list[-1].connect()
+	except ValueError as e:
+		logger.error(e)
+	except OSError as e:
+		logger.debug(e)
+	finally:
+		logger.debug("closing the sockets")
+		for i in range(len(client_list)):client_list[i].closeSocket()
 
 if __name__ == "__main__":
 	main()
