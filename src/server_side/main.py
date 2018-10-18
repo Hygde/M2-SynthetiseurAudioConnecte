@@ -22,14 +22,12 @@ def main():
 	try:
 		serv = Server(int(sys.argv[1]))
 		logger.debug("Creation of the server successed")
-		serv.sendJson()
+		#serv.sendJson()
 		serv.startRecording()
 		serv.whileAccept()
 	except ValueError as e:
-		logger.error("Incorrect port value !")
-		logger.debug(e)
+		logger.error(e)
 	except OSError as e:
-		logger.debug("Port already in use")
 		logger.debug(e)
 
 

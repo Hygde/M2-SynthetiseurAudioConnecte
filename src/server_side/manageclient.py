@@ -42,7 +42,6 @@ class ManageClient(Thread):
 		self.continuer = True
 		while(self.continuer):
 			try:
-			
 				if(self.read == False):
 					self.sock.sendall(self.data)
 					self.read = True
@@ -61,4 +60,3 @@ class ManageClient(Thread):
 		print(len(self.lclients))
 		self.lock.release()
 		self.logger.debug("Client %s cleanup completed!", self.addr)
-		

@@ -9,7 +9,7 @@ class Audio:
 		self.audio = pyaudio.PyAudio()
 		self.bsize = 2048
 		self.Format = pyaudio.paInt16
-		self.nb_channel = 1
+		self.nb_channel = 2
 		self.RATE = 45056
 		print(pyaudio.paInt16)
 		

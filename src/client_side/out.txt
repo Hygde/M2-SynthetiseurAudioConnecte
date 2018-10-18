@@ -1,0 +1,79 @@
+2018-10-18 10:45:52,526 :: INFO :: main :: main :: starting program
+2018-10-18 10:45:52,526 :: DEBUG :: main :: main :: Creation of the client successed
+2018-10-18 10:45:52,526 :: DEBUG :: client :: __init__ :: Creation of a client
+2018-10-18 10:45:52,526 :: DEBUG :: client :: connect :: Creating TCP socket
+2018-10-18 10:45:52,539 :: ERROR :: client :: connect :: [Errno 111] Connection refused
+2018-10-18 10:45:52,539 :: ERROR :: sendjson :: run :: [Errno 107] Transport endpoint is not connected
+2018-10-18 10:45:52,539 :: DEBUG :: client :: closeSocket :: Closing the socket
+2018-10-18 10:45:52,539 :: DEBUG :: client :: closeSocket :: Socket closed
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+2018-10-18 10:45:52,586 :: DEBUG :: uiparser :: parse :: UI version is 4.0
+2018-10-18 10:45:52,587 :: DEBUG :: uiparser :: classname :: uiname is MainWindow
+2018-10-18 10:45:52,587 :: DEBUG :: uiparser :: createUserInterface :: toplevel widget is MainWindow
+2018-10-18 10:45:52,587 :: DEBUG :: properties :: setProperties :: setting property geometry
+2018-10-18 10:45:52,587 :: DEBUG :: properties :: setProperties :: setting property windowTitle
+2018-10-18 10:45:52,587 :: DEBUG :: uiparser :: push :: push MainWindow MainWindow
+2018-10-18 10:45:52,587 :: DEBUG :: uiparser :: push :: push QWidget centralwidget
+2018-10-18 10:45:52,588 :: DEBUG :: properties :: setProperties :: setting property pyuicMargins
+2018-10-18 10:45:52,588 :: DEBUG :: uiparser :: push :: push QVBoxLayout verticalLayout
+2018-10-18 10:45:52,588 :: DEBUG :: properties :: setProperties :: setting property text
+2018-10-18 10:45:52,590 :: DEBUG :: properties :: setProperties :: setting property checked
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: push :: push QRadioButton RadioNormal
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: popWidget :: pop widget QRadioButton RadioNormal
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: popWidget :: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7fd407476048>
+2018-10-18 10:45:52,591 :: DEBUG :: properties :: setProperties :: setting property text
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: push :: push QRadioButton RadioAigue
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: popWidget :: pop widget QRadioButton RadioAigue
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: popWidget :: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7fd407476048>
+2018-10-18 10:45:52,591 :: DEBUG :: properties :: setProperties :: setting property text
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: push :: push QRadioButton RadioGrave
+2018-10-18 10:45:52,591 :: DEBUG :: uiparser :: popWidget :: pop widget QRadioButton RadioGrave
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popWidget :: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7fd407476048>
+2018-10-18 10:45:52,592 :: DEBUG :: properties :: setProperties :: setting property text
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: push :: push QRadioButton RadioFoule
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popWidget :: pop widget QRadioButton RadioFoule
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popWidget :: new topwidget <PyQt5.QtWidgets.QWidget object at 0x7fd407476048>
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popLayout :: pop layout QVBoxLayout verticalLayout
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popWidget :: pop widget QWidget centralwidget
+2018-10-18 10:45:52,592 :: DEBUG :: uiparser :: popWidget :: new topwidget <mainwindow.MainWindow object at 0x7fd40e5bf0d8>
+2018-10-18 10:45:52,592 :: DEBUG :: properties :: setProperties :: setting property geometry
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: push :: push QMenuBar menubar
+2018-10-18 10:45:52,593 :: DEBUG :: properties :: setProperties :: setting property title
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: push :: push QMenu menuFichier
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: popWidget :: pop widget QMenu menuFichier
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: popWidget :: new topwidget <PyQt5.QtWidgets.QMenuBar object at 0x7fd40747ce58>
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: popWidget :: pop widget QMenuBar menubar
+2018-10-18 10:45:52,593 :: DEBUG :: uiparser :: popWidget :: new topwidget <mainwindow.MainWindow object at 0x7fd40e5bf0d8>
+2018-10-18 10:45:52,604 :: DEBUG :: uiparser :: push :: push QStatusBar statusbar
+2018-10-18 10:45:52,604 :: DEBUG :: uiparser :: popWidget :: pop widget QStatusBar statusbar
+2018-10-18 10:45:52,604 :: DEBUG :: uiparser :: popWidget :: new topwidget <mainwindow.MainWindow object at 0x7fd40e5bf0d8>
+2018-10-18 10:45:52,605 :: DEBUG :: properties :: setProperties :: setting property text
+2018-10-18 10:45:52,605 :: DEBUG :: properties :: setProperties :: setting property shortcut
+2018-10-18 10:45:52,605 :: DEBUG :: uiparser :: popWidget :: pop widget MainWindow MainWindow
+2018-10-18 10:45:52,605 :: DEBUG :: uiparser :: popWidget :: new topwidget None
+2018-10-18 10:45:52,605 :: DEBUG :: uiparser :: addActions :: add action actionQuitter to menuFichier
+2018-10-18 10:45:52,605 :: DEBUG :: uiparser :: addActions :: add action menuFichier to menubar
+2018-10-18 10:45:52,618 :: DEBUG :: mainwindow :: setHosts :: [('127.0.0.1', 2000)]
+2018-10-18 10:45:52,618 :: DEBUG :: mainwindow :: connectToStreams :: It starts to connect to the streams
+2018-10-18 10:45:52,618 :: DEBUG :: mainwindow :: connectToStreams :: ('127.0.0.1', 2000)
+2018-10-18 10:45:52,619 :: DEBUG :: client :: __init__ :: Creation of a client
+2018-10-18 10:45:52,619 :: DEBUG :: audio :: __init__ :: Initializing Audio
+ALSA lib pcm_dmix.c:1052:(snd_pcm_dmix_open) unable to open slave
+ALSA lib pcm.c:2495:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2495:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2495:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib pcm_route.c:867:(find_matching_chmap) Found no matching channel map
+ALSA lib pcm_dmix.c:1052:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = Aucun fichier ou dossier de ce type
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+2018-10-18 10:45:53,674 :: DEBUG :: audioplayer :: __init__ :: Initializing AudioPlayer
+2018-10-18 10:45:53,674 :: DEBUG :: client :: connect :: Creating TCP socket
+2018-10-18 10:45:53,674 :: ERROR :: client :: connect :: [Errno 111] Connexion refusée
+2018-10-18 10:45:53,675 :: DEBUG :: stream :: run :: Playing stream !
+2018-10-18 10:45:53,675 :: ERROR :: stream :: run :: [Errno 107] Noeud final de transport n'est pas connecté
+2018-10-18 10:45:53,675 :: DEBUG :: client :: closeSocket :: Closing the socket
+2018-10-18 10:45:53,675 :: DEBUG :: client :: closeSocket :: Socket closed
+8
