@@ -2,14 +2,18 @@ import logging
 import socket
 import time
 
-class Client():
+from threading import Thread
+
+class Client(Thread):
 
 	def __init__(self, TCP, host, port):
+		Thread.__init__(self)
 		self.logger = logging.getLogger()
 		self.logger.debug("Creation of a client")
 		self.host = host
 		self.port = port
 		self.isTCP = TCP
+		self.continuer = True
 
 	def connect(self):
 		try:
@@ -21,18 +25,38 @@ class Client():
 				self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)#udp
 				self.sock.bind((self.host, self.port))
 			self.sock.connect((self.host, self.port))
-			self.logger.debug("connecting to %s (%s) with %s" % (self.host, self.port, self.sock.getpeername()))
+			self.logger.debug("connected to %s (%s) with %s" % (self.host, self.port, self.sock.getpeername()))
 		except Exception as e:
-			self.logger.debug(e)
+			self.logger.error(e)
 
 	def sendData(self, data):
 		try:
 			self.logger.debug("sending data to the server")
-			if(self.isTCP):self.sock.sendAll(data)
+			self.logger.debug(data)
+			if(self.isTCP):self.sock.send(data)
 			else:self.sock.sendTo(data, (self.host, self))
 		except Exception as e:
-			self.logger.debug("sending fail",e)
+			self.logger.error("sending fail",e)
+			
+	def recvUDP_TCP(self):
+		data = bytearray()
+		if(self.isTCP):data = self.sock.recv(1024)
+		else:data = self.recvfrom(1024)
+		return data
+			
+	def run(self):#reception of data
+		while(self.continuer):
+			try:
+				data = self.recvUDP_TCP()
+				if(data == b'CLOSE'):continuer = False
+				else:
+					self.logger.debug(data)	
+			except Exception as e:
+				self.logger.error(e)
+				self.closeSocket()
 
 	def closeSocket(self):
 		self.logger.debug("Closing the socket")
+		self.continuer = False
 		self.sock.close()
+		self.logger.debug("Socket closed")
