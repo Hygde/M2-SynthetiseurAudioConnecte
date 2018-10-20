@@ -1,6 +1,7 @@
 from client import Client
 from audioplayer import AudioPlayer
 from threading import Lock
+import numpy as np
 
 class Stream(Client):
 	
@@ -17,17 +18,21 @@ class Stream(Client):
 		self.audio.setNumberOfChannels(n)
 		self.audio.closeAudioPlayerStream()
 		self.audio.createAudioPlayerStream()
-		self.lupdate.release()
-
+		self.lupdate.release()		
 		
 	def run(self):
 		self.logger.debug("Playing stream !")
 		while(self.continuer):
 			try:
-				self.lupdate.acquire()
-				self.audio.play(self.sock.recv(self.audio.getBufferSize()))
-				self.lupdate.release()
+				data = self.sock.recv(self.audio.getBufferSize())
+				self.logger.debug(data)
+				if(data == b'CLOSE'):self.continuer = False
+				else:
+					self.lupdate.acquire()
+					self.audio.play(data)
+					self.lupdate.release()
 			except Exception as e:
 				self.logger.error(e)
-				self.audio.closeAudioPlayerStream()
-				self.closeSocket()
+				self.continuer = False
+		self.audio.closeAudioPlayerStream()
+		self.closeSocket()

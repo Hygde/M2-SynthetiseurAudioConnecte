@@ -1,8 +1,7 @@
 import logging
 import time
 from threading import Thread
-
-from microphone import *
+from microphone import Microphone
 
 class ManageMicrophone(Thread):
 	

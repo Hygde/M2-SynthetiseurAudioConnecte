@@ -1,4 +1,5 @@
-from audio import *
+import pyaudio
+from audio import Audio
 
 #class Microphone
 class Microphone(Audio):
