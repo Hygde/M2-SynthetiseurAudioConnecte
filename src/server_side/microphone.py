@@ -11,6 +11,7 @@ class Microphone(Audio):
 	#/* Implementation */
 	
 	def createMicroStream(self):
+		self.audio = pyaudio.PyAudio()
 		self.stream = self.audio.open(format=self.Format,channels=self.nb_channel,rate=self.RATE,input=True,frames_per_buffer=self.bsize)
 		self.logger.debug("stream opened")
 		

@@ -22,16 +22,16 @@ def initLogger():
 def main():
 	logger = initLogger()
 	logger.info("starting program")
-	client_list = []
+	pregister = None
 	try:
 		logger.debug("Creation of the client successed")
-		client_list.append(SendJson(True, "37.59.57.203",55555,"manifest.JSON"))
-		client_list[-1].connect()
-		client_list[-1].start()
+		pregister = SendJson(True, "37.59.57.203",55555,"manifest.JSON")
+		pregister.connect()
+		pregister.start()
 		#do some other task
 		app = QtWidgets.QApplication(sys.argv)
 		window = MainWindow()
-		client_list[-1].join()
+		pregister.join()
 		#todo get hosts from client_list and sends it to window object
 	except ValueError as e:
 		logger.error(e)
