@@ -1,11 +1,13 @@
 import socket
 import logging
-import threading
 
-from audio import *
+from time import sleep
+from threading import Thread
+from threading import Lock
+from audio import Audio
 #from sendjson import *
-from manageclient import *
-from managemicrophone import *
+from manageclient import ManageClient
+from microphone import Microphone
 
 class Server:
 	
@@ -28,10 +30,10 @@ class Server:
         self.json_data = SendJson("37.59.57.203", 55555, "json/manifest.JSON")
         self.json_data.sendingJson()
 		
-    def startRecording(self):
+    def createMicrophone(self):
         self.logger.debug("The server is starting the microphone thread")
-        self.manage_mic = ManageMicrophone(self.lock_client, self.list_client)
-        self.manage_mic.start()
+        self.micro = Microphone()
+        self.micro.createMicroStream()
 		
     def whileAccept(self):
         self.logger.debug("The server is accepting client")
@@ -42,18 +44,18 @@ class Server:
                 conn, addr = self.socket.accept()
                 self.lock_client.acquire(True)
                 self.list_client.append(ManageClient(conn, addr, self.lock_client, self.list_client))
+                self.list_client[-1].setMicrophone(self.micro)
                 self.list_client[-1].start()
                 self.lock_client.release()
-            except:
-                self.logger.debug("The server stop to accept client")
+            except KeyboardInterrupt:
+                continuer = False
+            except Exception as e:
+                self.logger.debug(e)
                 continuer = False
         self.cleanup()
 				
     def cleanup(self):
-	    self.logger.debug("The server is starting to clean up")
-	    for i in range(len(self.list_client)):
-	        self.list_client[i].stop()
-	    self.socket.shutdown(socket.SHUT_RDWR)
-	    self.socket.close()
-	    self.manage_mic.stop()
-	    self.manage_mic.join()
+        self.logger.debug("The server is starting to clean up")
+        self.micro.closeMicroStream()
+        self.socket.shutdown(socket.SHUT_RDWR)
+        self.socket.close()

@@ -1,6 +1,6 @@
 import sys
 import logging
-from server import *
+from server import Server
 
 def initLogger():
 	logger = logging.getLogger()
@@ -23,7 +23,7 @@ def main():
 		serv = Server(int(sys.argv[1]))
 		logger.debug("Creation of the server successed")
 		#serv.sendJson()
-		serv.startRecording()
+		serv.createMicrophone()
 		serv.whileAccept()
 	except ValueError as e:
 		logger.error(e)
