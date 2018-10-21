@@ -21,6 +21,8 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.show()
 
 	def connectSlots(self):
+		self.ui.RadioMono.clicked.connect(self.onMonoSelected)
+		self.ui.RadioStereo.clicked.connect(self.onStereoSelected)
 		self.ui.RadioNormal.clicked.connect(self.onNormalSelected)
 		self.ui.RadioAigue.clicked.connect(self.onAigueSelected)
 		self.ui.RadioGrave.clicked.connect(self.onGraveSelected)
@@ -48,21 +50,33 @@ class MainWindow(QtWidgets.QMainWindow):
 	#user's event
 
 	@pyqtSlot()
+	def onMonoSelected(self):
+		self.logger.debug("The output is now Mono")
+		self.updateStream(1)
+		pass
+
+	@pyqtSlot()
+	def onStereoSelected(self):
+		self.logger.debug("The output is now Stereo")
+		self.updateStream(2)
+		pass
+
+	@pyqtSlot()
 	def onNormalSelected(self):
 		self.logger.debug("The filter is now: normal")
-		self.updateStream(2)
+		#self.updateStream(2)
 		pass
 
 	@pyqtSlot()
 	def onAigueSelected(self):
 		self.logger.debug("The filter is now: aigue")
-		self.updateStream(3)
+		#self.updateStream(3)
 		pass
 
 	@pyqtSlot()
 	def onGraveSelected(self):
 		self.logger.debug("The filter is now: grave")
-		self.updateStream(1)
+		#self.updateStream(1)
 		pass
 
 	@pyqtSlot()

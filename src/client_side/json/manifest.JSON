@@ -1,1 +1,16 @@
-{"name": "John", "age": 31, "city": "New York"}
+{
+	"label": "monmodule",
+	"package": "com.developper.whateveryouwant",
+	"version": "1.0.0",
+	"versionLabel": "???",
+	"services": [
+		{
+			"name": "monService",
+			"format": "JSON/binary",
+			"type": "TCP/UDP",
+			"port": 2000
+		}
+	],
+	"os": "win/linux/mac/ios/android",
+	"type": "input/mobile"
+}
