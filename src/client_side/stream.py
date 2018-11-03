@@ -1,6 +1,7 @@
 from client import Client
 from audioplayer import AudioPlayer
 from threading import Lock
+from filter import Filter
 import numpy as np
 
 class Stream(Client):

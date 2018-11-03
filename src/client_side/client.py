@@ -34,9 +34,9 @@ class Client(Thread):
 			self.logger.debug("sending data to the server")
 			self.logger.debug(data)
 			if(self.isTCP):self.sock.send(data)
-			else:self.sock.sendTo(data, (self.host, self))
+			else:self.sock.sendto(data, self.host)
 		except Exception as e:
-			self.logger.error("sending fail",e)
+			self.logger.error("sending fail with error code : %s",e)
 			
 	def recvUDP_TCP(self):
 		data = bytearray()
@@ -48,7 +48,7 @@ class Client(Thread):
 		while(self.continuer):
 			try:
 				data = self.recvUDP_TCP()
-				if(data == b'CLOSE'):continuer = False
+				if(data == b'CLOSE'):self.continuer = False
 				else:
 					self.logger.debug(data)	
 			except Exception as e:
