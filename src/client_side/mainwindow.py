@@ -45,38 +45,38 @@ class MainWindow(QtWidgets.QMainWindow):
 
 	def updateStream(self,n):
 		for i in range(len(self.strl)):
-			self.strl[i].setCanal(n)
+			self.strl[i].updateFilter(n)
 
 	#user's event
 
 	@pyqtSlot()
 	def onMonoSelected(self):
 		self.logger.debug("The output is now Mono")
-		self.updateStream(1)
+		#self.updateStream(1)
 		pass
 
 	@pyqtSlot()
 	def onStereoSelected(self):
 		self.logger.debug("The output is now Stereo")
-		self.updateStream(2)
+		#self.updateStream(2)
 		pass
 
 	@pyqtSlot()
 	def onNormalSelected(self):
 		self.logger.debug("The filter is now: normal")
-		#self.updateStream(2)
+		self.updateStream(0)
 		pass
 
 	@pyqtSlot()
 	def onAigueSelected(self):
 		self.logger.debug("The filter is now: aigue")
-		#self.updateStream(3)
+		self.updateStream(1)
 		pass
 
 	@pyqtSlot()
 	def onGraveSelected(self):
 		self.logger.debug("The filter is now: grave")
-		#self.updateStream(1)
+		self.updateStream(2)
 		pass
 
 	@pyqtSlot()
