@@ -19,7 +19,17 @@ class Stream(Client):
 		self.audio.setNumberOfChannels(n)
 		self.audio.closeAudioPlayerStream()
 		self.audio.createAudioPlayerStream()
-		self.lupdate.release()		
+		self.lupdate.release()
+
+	def updateFilter(self, i):
+		if(i<1 or i>2):self.filter = None#update this cond
+		elif(i == 1):
+			self.filter = Filter(3, 1000, self.audio.getRate(), "highpass")
+			self.filter.designFilter()
+		elif(i == 2):
+			self.filter = Filter(3, 1000, self.audio.getRate(), "lowpass")
+			self.filter.designFilter()
+		#todo add crowd filter
 		
 	def run(self):
 		self.logger.debug("Playing stream !")
@@ -30,6 +40,7 @@ class Stream(Client):
 				if(data == b'CLOSE'):self.continuer = False
 				else:
 					self.lupdate.acquire()
+					if(not(self.filter == None)):data = self.filter.applyFilter(data)
 					self.audio.play(data)
 					self.lupdate.release()
 			except Exception as e:
