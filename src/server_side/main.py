@@ -4,10 +4,10 @@ from server import Server
 
 def initLogger():
 	logger = logging.getLogger()
-	logger.setLevel(logging.DEBUG)
+	logger.setLevel(logging.ERROR)
 	formatter = logging.Formatter("%(asctime)s :: %(levelname)s :: %(module)s :: %(funcName)s :: %(message)s")
 	ch = logging.StreamHandler()
-	ch.setLevel(logging.DEBUG)
+	ch.setLevel(logging.ERROR)
 	ch.setFormatter(formatter)
 	logger.addHandler(ch)
 	return logger		

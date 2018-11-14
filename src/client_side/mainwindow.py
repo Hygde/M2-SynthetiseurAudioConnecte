@@ -83,3 +83,8 @@ class MainWindow(QtWidgets.QMainWindow):
 	def onFouleSelected(self):
 		self.logger.debug("The filter is now: foule")
 		pass
+	
+	def closeEvent(self, event):
+		self.logger.error("application est quitée")
+		for s in self.strl:
+			s.cleanup()
