@@ -3,6 +3,7 @@ from audioplayer import AudioPlayer
 from threading import Lock
 from filter import Filter
 import numpy as np
+import time
 
 class Stream(Client):
 	
@@ -30,6 +31,10 @@ class Stream(Client):
 			self.filter = Filter(3, 1000, self.audio.getRate(), "lowpass")
 			self.filter.designFilter()
 		#todo add crowd filter
+
+	def cleanup(self):
+		self.audio.closeAudioPlayerStream()
+		self.closeSocket()
 		
 	def run(self):
 		self.logger.debug("Playing stream !")
@@ -40,11 +45,9 @@ class Stream(Client):
 				if(data == b'CLOSE'):self.continuer = False
 				else:
 					self.lupdate.acquire()
-					if(not(self.filter == None)):data = self.filter.applyFilter(data)
+					#if(not(self.filter == None)):data = self.filter.applyFilter(data)
 					self.audio.play(data)
 					self.lupdate.release()
 			except Exception as e:
 				self.logger.error(e)
 				self.continuer = False
-		self.audio.closeAudioPlayerStream()
-		self.closeSocket()
