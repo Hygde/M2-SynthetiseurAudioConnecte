@@ -3,8 +3,8 @@ from client import *
 
 class SendJson(Client):
 
-    def __init__(self, host, port, path):
-        Client.__init__(self, host, port)
+    def __init__(self, TCP, host, port, path):
+        Client.__init__(self, TCP, host, port)
         self.path = path
 
     def sendingJson(self):

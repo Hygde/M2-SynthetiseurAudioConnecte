@@ -21,11 +21,11 @@ class ManageClient(Thread):
 		
 	def setData(self, data):
 		self.logger.debug("set data")
-		if(self.lock_read.acquire(False)):
-			self.data = data
-			self.read = False
-			self.lock_read.release()
-			self.logger.debug("setting data completed")
+		#if(self.lock_read.acquire(False)):
+		self.data = data
+		self.read = False
+		#self.lock_read.release()
+		self.logger.debug("setting data completed")
 
 	def setMicrophone(self, mic):
 		self.logger.debug("Setting the microphone")

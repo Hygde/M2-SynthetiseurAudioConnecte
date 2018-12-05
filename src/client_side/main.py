@@ -40,6 +40,7 @@ def main():
 		logger.error(e)
 	finally:
 		window.setHosts([("127.0.0.1", 2000)])
+		#window.setHosts([("192.168.1.15", 2000)])
 		window.connectToStreams()
 		sys.exit(app.exec_())
 

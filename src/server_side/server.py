@@ -5,7 +5,7 @@ from time import sleep
 from threading import Thread
 from threading import Lock
 from audio import Audio
-#from sendjson import *
+from sendjson import *
 from manageclient import ManageClient
 from microphone import Microphone
 
@@ -27,7 +27,7 @@ class Server:
     def sendJson(self):
         self.logger.debug("The server is sending a json file to the clients")
         #self.json_data = SendJson("37.59.57.203", 55555, "json/manifest.JSON")
-        self.json_data = SendJson("37.59.57.203", 55555, "json/manifest.JSON")
+        self.json_data = SendJson(True, "37.59.57.203", 55555, "json/manifest.JSON")
         self.json_data.sendingJson()
 		
     def createMicrophone(self):
@@ -42,11 +42,11 @@ class Server:
             try:
                 print(len(self.list_client))
                 conn, addr = self.socket.accept()
-                self.lock_client.acquire(True)
+                #self.lock_client.acquire(True)
                 self.list_client.append(ManageClient(conn, addr, self.lock_client, self.list_client))
                 self.list_client[-1].setMicrophone(self.micro)
                 self.list_client[-1].start()
-                self.lock_client.release()
+                #self.lock_client.release()
             except KeyboardInterrupt:
                 continuer = False
             except Exception as e:
