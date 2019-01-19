@@ -40,8 +40,7 @@ class Client(Thread):
 			
 	def recvUDP_TCP(self):
 		data = bytearray()
-		if(self.isTCP):data = self.sock.recv(1024)
-		else:data = self.recvfrom(1024)
+		data = self.sock.recv(1024)
 		return data
 			
 	def run(self):#reception of data
