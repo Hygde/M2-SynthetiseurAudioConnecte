@@ -11,10 +11,10 @@ from mainwindow import MainWindow
 
 def initLogger():
 	logger = logging.getLogger()
-	logger.setLevel(logging.ERROR)
+	logger.setLevel(logging.DEBUG)
 	formatter = logging.Formatter("%(asctime)s :: %(levelname)s :: %(module)s :: %(funcName)s :: %(message)s")
 	ch = logging.StreamHandler()
-	ch.setLevel(logging.ERROR)
+	ch.setLevel(logging.DEBUG)
 	ch.setFormatter(formatter)
 	logger.addHandler(ch)
 	return logger		
@@ -22,25 +22,22 @@ def initLogger():
 def main():
 	logger = initLogger()
 	logger.info("starting program")
-	pregister = None
 	window = None
 	try:
 		logger.debug("Creation of the client successed")
-		#pregister = SendJson(True, "37.59.57.203",55555,"manifest.JSON")
-		#pregister.connect()
-		#pregister.start()
-		#do some other task
+		pregister = SendJson(True, "37.59.57.203",55555,"json/manifest.JSON")
+		pregister.sendingJson()
+		ip, port = pregister.getIpOfServer()
+		pregister.closeSocket()
 		app = QtWidgets.QApplication(sys.argv)
 		window = MainWindow()
-		#pregister.join()
 		#todo get hosts from client_list and sends it to window object
 	except ValueError as e:
 		logger.error(e)
 	except OSError as e:
 		logger.error(e)
 	finally:
-		window.setHosts([("127.0.0.1", 2000)])
-		#window.setHosts([("192.168.1.15", 2000)])
+		window.setHosts([(ip, port)])
 		window.connectToStreams()
 		sys.exit(app.exec_())
 
