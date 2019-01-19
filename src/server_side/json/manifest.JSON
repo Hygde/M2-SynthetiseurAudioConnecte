@@ -1,0 +1,16 @@
+{
+	"label": "MicServer",
+	"package": "com.M2ISE.something",
+	"version": "1.0.0",
+	"versionLabel": "AnOtherThing",
+	"services":[
+		{
+			"name": "SoundStream",
+			"format": "JSON/binary",
+			"type": "TCP",
+			"port": 2000
+		}
+	],
+	"os": "win/linux/mac",
+	"type": "input"
+}
